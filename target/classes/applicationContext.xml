@@ -19,13 +19,17 @@
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
     <mvc:annotation-driven/>
     
-    <mvc:cors>
+    <!-- <mvc:cors>
 	   <mvc:mapping path="/**"
 	             allowed-origins="http://127.0.0.1:8080,http://127.0.0.1:8081"
 	             allowed-methods="GET,POST,PUT,DELETE,OPTIONS"
 	             allowed-headers="Content-Type,token"
 	             allow-credentials="true"
 	             max-age="123" />
+	</mvc:cors> -->
+	
+	 <mvc:cors>
+	    <mvc:mapping path="/**" />
 	</mvc:cors>
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
@@ -161,9 +165,6 @@
        <property name="defaultContentType" value="text/html"/>
     </bean> 
     
-    <mvc:cors>
-	    <mvc:mapping path="/**" />
-	</mvc:cors>
     
    <!-- 定义跳转的文件的前后缀 ，视图模式配置-->  
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
