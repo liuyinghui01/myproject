@@ -13,13 +13,20 @@
     					http://www.springframework.org/schema/aop
     					http://www.springframework.org/schema/aop/spring-aop.xsd
                         http://www.springframework.org/schema/mvc    
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
+                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->  
     <context:component-scan base-package="com.cn.config" />  
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
     <mvc:annotation-driven/>
     
-    
+    <mvc:cors>
+	   <mvc:mapping path="/**"
+	             allowed-origins="http://127.0.0.1:8080,http://127.0.0.1:8081"
+	             allowed-methods="GET,POST,PUT,DELETE,OPTIONS"
+	             allowed-headers="Content-Type,token"
+	             allow-credentials="true"
+	             max-age="123" />
+	</mvc:cors>
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
@@ -109,10 +116,10 @@
     
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->  
     <bean id="mappingJacksonHttpMessageConverter"  
-        class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  
+        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
         <property name="supportedMediaTypes">  
             <list>  
-                <value>text/html;charset=UTF-8</value>  
+                <value>application/json;charset=UTF-8</value>  
             </list>  
         </property>  
     </bean>  
@@ -140,25 +147,23 @@
         <property name="resolveLazily" value="true"/>
     </bean>   
     
-    <!-- 配置ViewResolver 。可用多个ViewResolver 。使用order属性排序。   InternalResourceViewResolver 放在最后-->
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-    <property name="order" value="1"></property>
-        <property name="mediaTypes">
-            <map>
-                <!-- 告诉视图解析器，返回的类型为json格式 -->
-                <entry key="json" value="application/json" />
-                <entry key="xml" value="application/xml" />
-                <entry key="htm" value="text/htm" />
-            </map>
-        </property>
-        <property name="defaultViews">
-            <list>
-                <!-- ModelAndView里的数据变成JSON -->
-                <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
-            </list>
-        </property>
-        <property name="ignoreAcceptHeader" value="true"></property>
-    </bean>
+    <bean id="contentNegotiationManager"  class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+       <property name="favorParameter" value="true"/>
+       <property name="parameterName" value="format"/>
+       <property name="ignoreAcceptHeader" value="false"/>
+       <property name="mediaTypes">
+           <value>
+                json=application/json
+                xml=application/xml
+                html=text/html
+            </value>
+       </property>
+       <property name="defaultContentType" value="text/html"/>
+    </bean> 
+    
+    <mvc:cors>
+	    <mvc:mapping path="/**" />
+	</mvc:cors>
     
    <!-- 定义跳转的文件的前后缀 ，视图模式配置-->  
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
