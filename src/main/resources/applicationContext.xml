@@ -28,9 +28,9 @@
 	             max-age="123" />
 	</mvc:cors> -->
 	
-	 <mvc:cors>
+	<!--  <mvc:cors>
 	    <mvc:mapping path="/**" />
-	</mvc:cors>
+	</mvc:cors> -->
     <!-- 引入配置文件 -->  
     <bean id="propertyConfigurer"  
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  

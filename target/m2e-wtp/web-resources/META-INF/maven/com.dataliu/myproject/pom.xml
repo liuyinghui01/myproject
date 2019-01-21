@@ -22,60 +22,70 @@
   </properties>
 
   <dependencies>
+  		<!-- start json处理 -->
   		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.7.4</version>
-			</dependency>
-			<dependency>
+		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 			<version>2.7.4</version>
-			</dependency>
-			<dependency>
+		</dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.7.4</version>
-			</dependency>
+		</dependency>
+		<!-- end json处理 -->
+		<!-- start lombok -->
 		<dependency>
 	        <groupId>org.projectlombok</groupId>
 	        <artifactId>lombok</artifactId>
 	        <version>1.18.4</version>
 	    </dependency>
+	    <!-- end lombok -->
+	    <!-- start分页插件 -->
 	    <dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
 			<version>4.1.6</version>
 		</dependency>
+		<!-- end分页插件 -->
+		<!-- start切面语法 -->
 		 <dependency>
 		   <groupId>org.aspectj</groupId>
 		   <artifactId>aspectjweaver</artifactId>
 		   <version>1.8.4</version>
 		  </dependency>
-		  <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+		 <!-- end切面语法 -->
+		 <!-- start validation异常 -->
 		<dependency>
 		    <groupId>javax.validation</groupId>
 		    <artifactId>validation-api</artifactId>
 		    <version>2.0.1.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
+		 <!-- end validation异常 -->
+		 <!-- start redis缓存 -->
 		<dependency>
 		    <groupId>redis.clients</groupId>
 		    <artifactId>jedis</artifactId>
 		    <version>3.0.1</version>
 		</dependency>
+		<!-- end redis缓存 -->
+		<!-- start apache工具包 -->
 		<dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
 		<dependency>
 		    <groupId>commons-collections</groupId>
 		    <artifactId>commons-collections</artifactId>
 		    <version>3.2.2</version>
 		</dependency>
-				  
+		<!-- end apache工具表 -->		  
          <!-- spring核心包 -->  
         <dependency>  
             <groupId>org.springframework</groupId>  
@@ -127,6 +137,7 @@
             <artifactId>spring-test</artifactId>  
             <version>${spring.version}</version>  
         </dependency>  
+        <!-- end spring -->
         <!-- mybatis核心包 -->  
         <dependency>  
             <groupId>org.mybatis</groupId>  
