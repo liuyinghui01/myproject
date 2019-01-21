@@ -24,6 +24,7 @@ tmp/
 *~.nib
 local.properties
 .settings/
+logs/
 .loadpath
 
 # Eclipse Core
